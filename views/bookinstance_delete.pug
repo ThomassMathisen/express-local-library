@@ -1,9 +1,9 @@
 extends layout
 
 block content
-  h1 #{title}: #{bookInstance._id}
+  h1 #{title}: ID #{bookInstance._id}
 
-    p Do you really want to delete this Book Instance?
+  p Do you really want to delete this Book Instance?
 
     form(method='POST' action='')
       div.form-group
