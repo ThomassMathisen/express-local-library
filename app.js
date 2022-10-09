@@ -15,27 +15,23 @@ const helmet = require("helmet")
 
 var app = express();
 
-app.use(helmet())
-
-// Set up mongoose connection
+// Set up mongoose connectçion
 const mongoose = require("mongoose");
-const mongoDB = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.lflruz1.mongodb.net/?retryWrites=true&w=majority`;
+const mongoDB = `mongodb+srv://thomat:thomat123@cluster0.lflruz1.mongodb.net/?retryWrites=true&w=majority`;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
-
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use(compression())
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(helmet());
+app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
